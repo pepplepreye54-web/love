@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Gallery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#2563eb",
+              dark: "#111827",
+              light: "#f8fafc",
+            },
+            fontFamily: {
+              sans: ["Inter", "system-ui", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style type="text/tailwindcss">
+      @layer utilities {
+        .content-auto {
+          content-visibility: auto;
+        }
+        .card-hover {
+          @apply transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl;
+        }
+        .fade-in {
+          opacity: 0;
+          animation: fadeIn 0.6s ease-in forwards;
+        }
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      }
+    </style>
+  </head>
+  <body
+    class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 min-h-screen transition-colors duration-300"
+  >
+    <!-- Header & Theme Toggle -->
+    <header
+      class="container mx-auto px-4 py-6 flex justify-between items-center"
+    >
+      <h1 class="text-2xl font-bold">Product Showcase</h1>
+      <button
+        id="themeToggle"
+        class="px-4 py-2 rounded-lg bg-primary/10 text-primary dark:bg-primary/20 hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors"
+      >
+        🌙 Dark Mode
+      </button>
+    </header>
+
+    <!-- Gallery Section -->
+    <main class="container mx-auto px-4 py-10">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Product Card 1 -->
+        <div
+          class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden card-hover fade-in"
+          style="animation-delay: 0.1s"
+        >
+          <img
+            src="https://picsum.photos/id/26/600/400"
+            alt="Wireless Headphones"
+            class="w-full h-48 object-cover"
+          />
+          <div class="p-5">
+            <h3 class="text-xl font-semibold mb-2">Wireless Headphones</h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-4">
+              Premium sound quality with noise cancellation technology.
+            </p>
+            <button
+              class="w-full py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
+            >
+              View Details
+            </button>
+          </div>
+        </div>
+
+        <!-- Product Card 2 -->
+        <div
+          class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden card-hover fade-in"
+          style="animation-delay: 0.2s"
+        >
+          <img
+            src="https://picsum.photos/id/96/600/400"
+            alt="Smart Watch"
+            class="w-full h-48 object-cover"
+          />
+          <div class="p-5">
+            <h3 class="text-xl font-semibold mb-2">Smart Watch</h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-4">
+              Track your fitness, health and stay connected anywhere.
+            </p>
+            <button
+              class="w-full py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
+            >
+              View Details
+            </button>
+          </div>
+        </div>
+
+        <!-- Product Card 3 -->
+        <div
+          class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden card-hover fade-in"
+          style="animation-delay: 0.3s"
+        >
+          <img
+            src="https://picsum.photos/id/180/600/400"
+            alt="Bluetooth Speaker"
+            class="w-full h-48 object-cover"
+          />
+          <div class="p-5">
+            <h3 class="text-xl font-semibold mb-2">Bluetooth Speaker</h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-4">
+              Portable, waterproof speaker with powerful bass sound.
+            </p>
+            <button
+              class="w-full py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
+            >
+              View Details
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      // Theme Toggle Functionality
+      const themeToggle = document.getElementById("themeToggle");
+      const htmlElement = document.documentElement;
+
+      // Check local storage for saved theme
+      if (
+        localStorage.getItem("theme") === "dark" ||
+        (!localStorage.getItem("theme") &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        htmlElement.classList.add("dark");
+        themeToggle.textContent = "☀️ Light Mode";
+      } else {
+        htmlElement.classList.remove("dark");
+        themeToggle.textContent = "🌙 Dark Mode";
+      }
+
+      // Toggle theme on click
+      themeToggle.addEventListener("click", () => {
+        htmlElement.classList.toggle("dark");
+
+        if (htmlElement.classList.contains("dark")) {
+          localStorage.setItem("theme", "dark");
+          themeToggle.textContent = "☀️ Light Mode";
+        } else {
+          localStorage.setItem("theme", "light");
+          themeToggle.textContent = "🌙 Dark Mode";
+        }
+      });
+
+      // Optional: Add click interaction to cards
+      document.querySelectorAll(".card-hover").forEach((card) => {
+        card.addEventListener("click", () => {
+          alert("You clicked on a product card!");
+        });
+      });
+    </script>
+  </body>
+</html>

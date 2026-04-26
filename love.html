@@ -1,53 +1,64 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Poppins', 'sans-serif'],
-                    },
-                }
-            }
-        }
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Poppins", "sans-serif"],
+            },
+          },
+        },
+      };
     </script>
     <style type="text/tailwindcss">
-        @layer utilities {
-            .text-shadow {
-                text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-            }
-            .btn-hover {
-                transition: all 0.3s ease;
-            }
-            .btn-hover:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            }
+      @layer utilities {
+        .text-shadow {
+          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
+        .btn-hover {
+          transition: all 0.3s ease;
+        }
+        .btn-hover:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+      }
     </style>
-</head>
-<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen font-sans">
+  </head>
+  <body
+    class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen font-sans"
+  >
     <section class="min-h-screen flex items-center justify-center px-4 py-16">
-        <div class="max-w-4xl w-full text-center">
-            <!-- Hero Content -->
-            <h1 class="text-[clamp(2.5rem,8vw,4rem)] font-bold text-gray-800 mb-6 text-shadow leading-tight">
-                Supriye Daniela People
-            </h1>
-            
-            <p class="text-[clamp(1.1rem,3vw,1.5rem)] text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed">
-                Creative Developer & Designer
-            </p>
-            
-            <button class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-4 px-8 rounded-full text-lg btn-hover">
-                View My Projects
-            </button>
-        </div>
+      <div class="max-w-4xl w-full text-center">
+        <!-- Hero Content -->
+        <h1
+          class="text-[clamp(2.5rem,8vw,4rem)] font-bold text-gray-800 mb-6 text-shadow leading-tight"
+        >
+          Supriye Daniela Pepple
+        </h1>
+
+        <p
+          class="text-[clamp(1.1rem,3vw,1.5rem)] text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed"
+        >
+          Creative Developer & Designer
+        </p>
+
+        <button
+          class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-4 px-8 rounded-full text-lg btn-hover"
+        >
+          View My Projects
+        </button>
+      </div>
     </section>
-</body>
+  </body>
 </html>
