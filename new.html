@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fun Newsletter Signup</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF6B9E',
+                        secondary: '#8B5CF6',
+                        bright: '#FCD34D'
+                    },
+                    fontFamily: {
+                        playful: ['"Comic Neue"', 'cursive', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .bounce-hover {
+                @apply transition-all duration-300 hover:scale-105 hover:-translate-y-1;
+            }
+            .wiggle {
+                animation: wiggle 0.5s ease-in-out;
+            }
+            .pop-in {
+                animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            }
+            @keyframes wiggle {
+                0%, 100% { transform: rotate(-2deg); }
+                50% { transform: rotate(2deg); }
+            }
+            @keyframes popIn {
+                from { opacity: 0; transform: scale(0.8); }
+                to { opacity: 1; transform: scale(1); }
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gradient-to-br from-pink-100 via-purple-100 to-yellow-100 min-h-screen flex items-center justify-center p-4 font-playful">
+
+    <div class="w-full max-w-md bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl p-6 md:p-8 border-4 border-dashed border-primary">
+        <div class="text-center mb-8">
+            <h2 class="text-[clamp(1.8rem,5vw,2.5rem)] font-bold text-primary mb-3 wiggle inline-block">✨ Join the Fun! ✨</h2>
+            <p class="text-gray-700 text-lg">Get awesome updates, cool tips and happy vibes delivered straight to your inbox! 🎉</p>
+        </div>
+
+        <!-- Signup Form -->
+        <form id="signupForm" class="space-y-5">
+            <div>
+                <input 
+                    type="email" 
+                    id="emailInput"
+                    placeholder="Enter your magical email... 📧" 
+                    class="w-full px-5 py-4 rounded-xl border-2 border-secondary/30 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all text-lg bg-white/90"
+                    required
+                >
+            </div>
+
+            <button 
+                type="submit" 
+                class="w-full py-4 bg-gradient-to-r from-primary to-secondary text-white font-bold rounded-xl text-lg shadow-md bounce-hover relative overflow-hidden"
+            >
+                <span class="relative z-10">Subscribe Now 🚀</span>
+                <div class="absolute inset-0 bg-white/20 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
+            </button>
+        </form>
+
+        <!-- Success Message (Hidden by Default) -->
+        <div id="successMessage" class="mt-6 p-5 bg-green-100 border-2 border-green-400 rounded-xl text-center hidden pop-in">
+            <p class="text-green-700 font-bold text-xl">Woohoo! 🎉</p>
+            <p class="text-green-600 mt-1">You’re officially part of the crew! Thanks for signing up! 💖</p>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('signupForm');
+        const successMsg = document.getElementById('successMessage');
+        const emailInput = document.getElementById('emailInput');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Simple validation
+            if(emailInput.value.includes('@')) {
+                // Hide form and show success
+                form.classList.add('opacity-0', 'scale-95', 'transition-all', 'duration-300');
+                setTimeout(() => {
+                    form.classList.add('hidden');
+                    successMsg.classList.remove('hidden');
+                }, 300);
+            } else {
+                emailInput.classList.add('border-red-500', 'wiggle');
+                setTimeout(() => emailInput.classList.remove('wiggle'), 500);
+            }
+        });
+    </script>
+
+</body>
+</html>
