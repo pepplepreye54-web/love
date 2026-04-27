@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Todo App</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+       .todo-container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 450px;
+        }
+
+        h1 {
+            color: #2d3748;
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 28px;
+        }
+
+       .input-area {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        #todo-input {
+            flex-grow: 1;
+            padding: 12px 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        #todo-input:focus {
+            outline: none;
+            border-color: #4299e1;
+        }
+
+        #add-btn {
+            padding: 12px 20px;
+            background-color: #4299e1;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        #add-btn:hover {
+            background-color: #3182ce;
+        }
+
+        #todo-list {
+            list-style: none;
+        }
+
+       .todo-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+            background-color: #f7fafc;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+       .todo-text {
+            font-size: 16px;
+            color: #2d3748;
+            cursor: pointer;
+        }
+
+       .todo-text.completed {
+            text-decoration: line-through;
+            color: #a0aec0;
+        }
+
+       .actions {
+            display: flex;
+            gap: 10px;
+        }
+
+       .action-btn {
+            background: none;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            color: #718096;
+            transition: color 0.3s;
+        }
+
+       .action-btn:hover {
+            color: #2d3748;
+        }
+
+       .like-btn.liked {
+            color: #e53e3e;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="todo-container">
+        <h1>📝 My Todo List</h1>
+        
+        <div class="input-area">
+            <input type="text" id="todo-input" placeholder="Add a new task...">
+            <button id="add-btn">Add</button>
+        </div>
+
+        <ul id="todo-list"></ul>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const input = document.getElementById('todo-input');
+            const addBtn = document.getElementById('add-btn');
+            const list = document.getElementById('todo-list');
+
+            // Add new todo
+            function addTodo() {
+                const text = input.value.trim();
+                if (text === '') return;
+
+                const li = document.createElement('li');
+                li.className = 'todo-item';
+                li.innerHTML = `
+                    <span class="todo-text">${text}</span>
+                    <div class="actions">
+                        <button class="action-btn like-btn"><i class="fas fa-heart"></i></button>
+                        <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
+                    </div>
+                `;
+
+                // Toggle complete
+                li.querySelector('.todo-text').addEventListener('click', function() {
+                    this.classList.toggle('completed');
+                });
+
+                // Toggle like
+                li.querySelector('.like-btn').addEventListener('click', function() {
+                    this.classList.toggle('liked');
+                });
+
+                // Delete item
+                li.querySelector('.delete-btn').addEventListener('click', function() {
+                    li.remove();
+                });
+
+                list.appendChild(li);
+                input.value = '';
+                input.focus();
+            }
+
+            addBtn.addEventListener('click', addTodo);
+            input.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') addTodo();
+            });
+        });
+    </script>
+
+</body>
+</html>
