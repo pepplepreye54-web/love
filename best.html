@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pricing Cards</title>
+    <style>
+      /* Base styles for the card component */
+      .pricing-card {
+        width: 300px;
+        margin: 20px auto;
+        background-color: #fff;
+        box-shadow: 0 0 10px #ccc; /* Fixed typo */
+        padding: 20px;
+        border-radius: 8px;
+        text-align: left;
+        font-family: Arial, sans-serif;
+      }
+
+      .pricing-card.title {
+        font-size: 22px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .pricing-card.price {
+        font-size: 18px;
+        color: #28a745;
+        margin-bottom: 15px;
+      }
+
+      .pricing-card.features {
+        list-style: none;
+        padding-left: 0;
+        margin-bottom: 20px;
+      }
+
+      .pricing-card.features li {
+        padding: 8px 0;
+        border-bottom: 1px solid #eee;
+      }
+
+      .pricing-card.btn {
+        background: #007bff;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        width: 100%;
+      }
+
+      .pricing-card.btn:hover {
+        background: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Container to hold multiple cards -->
+    <div id="card-container"></div>
+
+    <script>
+      // Reusable Component Function
+      function createPricingCard(title, price, features) {
+        // Create card element
+        const card = document.createElement("div");
+        card.className = "pricing-card";
+
+        // Create HTML content
+        card.innerHTML = `
+                <h2 class="title">${title}</h2>
+                <p class="price">${price}</p>
+                <ul class="features">
+                    ${features.map((feature) => `<li>${feature}</li>`).join("")}
+                </ul>
+                <button class="btn">Start Trial</button>
+            `;
+
+        return card;
+      }
+
+      // --- Usage Example ---
+
+      // Data for Basic Plan
+      const basicFeatures = [
+        "1 GB Storage",
+        "Basic Support",
+        "All Core Features",
+      ];
+      const basicCard = createPricingCard(
+        "Basic Plan",
+        "$9.99 /month",
+        basicFeatures,
+      );
+
+      // Data for Pro Plan
+      const proFeatures = [
+        "10 GB Storage",
+        "Priority Support",
+        "All Core Features",
+        "Advanced Analytics",
+      ];
+      const proCard = createPricingCard(
+        "Pro Plan",
+        "$19.99 /month",
+        proFeatures,
+      );
+
+      // Append cards to the page
+      document.getElementById("card-container").appendChild(basicCard);
+      document.getElementById("card-container").appendChild(proCard);
+    </script>
+  </body>
+</html>
